@@ -61,6 +61,6 @@
          "required": false,
          "value": "ANYTHING"
       }
-       "stack":"heroku 18"
+       "stack" : "heroku 18"
    }
 }
