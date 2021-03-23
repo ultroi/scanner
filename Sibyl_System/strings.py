@@ -1,6 +1,9 @@
 on_string = """
-Connection successful! 
-Welcome {Enforcer} {name}
+Connected to CHARLIE SYSTEMS! 
+Welcome
+
+ IDENTITY:{Enforcer}
+ COMMANDER : {name}
 You are a valid user!
 """
 
