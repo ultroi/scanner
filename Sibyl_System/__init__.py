@@ -30,7 +30,7 @@ if ENV:
     ADMIRALS = list(int(x) for x in os.environ.get("ADMIRALS", "").split())
     EXECUTIONERS = list(int(x) for x in os.environ.get("EXECUTIONERS", "").split())
     MONGO_DB_URL = os.environ.get("MONGO_DB_URL")
-    charlie_logs = int(os.environ.get("Charlie_logs"))
+    Charlie_logs = int(os.environ.get("Charlie_logs"))
     Charlie_approved_logs = int(os.environ.get("Charlie_Approved_Logs"))
     GBAN_MSG_LOGS = int(os.environ.get("GBAN_MSG_LOGS"))
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
