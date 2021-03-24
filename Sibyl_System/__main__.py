@@ -57,7 +57,7 @@ async def status(event):
     time.sleep(1)
     await msg.edit("Initialising ■■■■■■")
     time.sleep(1)
-    await msg.edit("Initialising 🔰🔰🔰🔰🔰")
+    await msg.edit("Connected 🔰🔰🔰🔰🔰")
     time.sleep(1)
     await msg.edit("Connection successful!")
     time.sleep(2)
