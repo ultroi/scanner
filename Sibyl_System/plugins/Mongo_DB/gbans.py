@@ -43,7 +43,7 @@ async def update_gban(
         gbans_dict = {
             "user": victim,
             "reason": reason,
-            "enforcer": enforcer,
+            "parademon": enforcer,
             "proof_id": proof_id,
             "message": message,
             "timestamp": datetime.timestamp(datetime.now()),
