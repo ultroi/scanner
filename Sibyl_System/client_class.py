@@ -5,15 +5,16 @@ from .strings import (
     proof_string,
     forced_scan_string,
 )
-from Sibyl_System import (
-    Sibyl_logs,
-    Sibyl_approved_logs,
+from Charlie_System import (
+    
+    Charlie_logs,
+    Charlie_approved_logs,
     GBAN_MSG_LOGS,
     BOT_TOKEN,
     API_ID_KEY,
     API_HASH_KEY,
 )
-from Sibyl_System.plugins.Mongo_DB.gbans import update_gban, delete_gban
+from Charlie_System.plugins.Mongo_DB.gbans import update_gban, delete_gban
 
 
 class SibylClient(TelegramClient):
@@ -22,20 +23,20 @@ class SibylClient(TelegramClient):
     def __init__(self, *args, **kwargs):
         """Declare stuff."""
         self.gban_logs = GBAN_MSG_LOGS
-        self.approved_logs = Sibyl_approved_logs
-        self.log = Sibyl_logs
+        self.approved_logs = Charlie_approved_logs
+        self.log = Charlie_logs
         self.bot = None
         self.processing = 0
         self.processed = 0
         if BOT_TOKEN:
             self.bot = TelegramClient(
-                "SibylSystem", api_id=API_ID_KEY, api_hash=API_HASH_KEY
+                "Charlieystem", api_id=API_ID_KEY, api_hash=API_HASH_KEY
             ).start(bot_token=BOT_TOKEN)
         super().__init__(*args, **kwargs)
 
     async def gban(
         self,
-        enforcer=None,
+        executioner=None,
         target=None,
         reason=None,
         msg_id=None,
@@ -69,14 +70,14 @@ class SibylClient(TelegramClient):
             )
         if bot:
             await self.send_message(
-                Sibyl_approved_logs,
-                bot_gban_string.format(enforcer=enforcer, scam=target, reason=reason),
+                charlie_approved_logs,
+                bot_gban_string.format(executioner=executioner, scam=target, reason=reason),
             )
         else:
             await self.send_message(
-                Sibyl_approved_logs,
+                Charlie_approved_logs,
                 scan_approved_string.format(
-                    enforcer=enforcer, scam=target, reason=reason, proof_id=msg_id
+                    executioner=executioner, scam=target, reason=reason, proof_id=msg_id
                 ),
             )
         if not target:
@@ -85,7 +86,7 @@ class SibylClient(TelegramClient):
             victim=int(target),
             reason=reason,
             proof_id=int(msg_id),
-            enforcer=int(enforcer),
+            executioner=int(executioner),
             message=message,
         )
 
