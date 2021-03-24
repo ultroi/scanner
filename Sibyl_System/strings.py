@@ -1,10 +1,10 @@
 on_string = """
-Connected to CHARLIE SYSTEMS! 
+Connected to CHARLIE! 
 Welcome
-
- IDENTITY:{Enforcer}
- COMMANDER : {name}
-You are a valid user!
+⭐⭐⭐⭐⭐
+RANK:{Enforcer}
+NAME : {name}
+You are an authorized user!
 """
 
 # Make sure not to change these too much
@@ -12,7 +12,7 @@ You are a valid user!
 scan_request_string = """
 $SCAN
 Cymatic Scan request!
-**Enforcer:** {enforcer} 
+**Executioner:** {executioner} 
 **User scanned:** {spammer}
 **Reason:** `{reason}`
 **Scan Source:** {chat}
@@ -20,7 +20,7 @@ Cymatic Scan request!
 """
 forced_scan_string = """
 $FORCED
-**Inspector:** {ins}
+**Admiral:** {ins}
 **Target:** {spammer}
 **Reason:** `{reason}`
 **Scan Source:** {chat}
@@ -46,13 +46,13 @@ scan_approved_string = """
 **Target User:** {scam}
 **Crime Coefficient:** `Over 300`
 **Reason:** `{reason}`
-**Enforcer:** `{enforcer}`
+**Executioner:** `{executioner}`
 **Case Number:** `{proof_id}`
 """
 
 bot_gban_string = """
 #DestroyDecomposer
-**Enforcer:** `{enforcer}`
+**Executioner:** `{executioner}`
 **Target User:** {scam}
 **Reason:** `{reason}`
 """
