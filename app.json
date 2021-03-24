@@ -24,15 +24,15 @@
          "description": "get from heroku settings.",
          "value": ""
       },      
-      "SIBYL": {
+      "CHARLIE": {
          "description": "readme.",
          "value": ""
       },
-      "INSPECTORS": {
+      "ADMIRALS": {
          "description": "see readme",
          "value": ""
       },
-      "ENFORCERS": {
+      "EXECUTIONERS": {
          "description": "readme plz",
          "value": ""
       },
@@ -40,11 +40,11 @@
          "description": "mongodb.com go get it.. see channel infotel autofilter bot tute",
          "value": ""
       },
-      "Sibyl_logs": {
+      "CHARLIE_logs": {
          "description": "radme.",
          "value": ""
       },      
-      "Sibyl_Approved_Logs": {
+      "charlie_Approved_Logs": {
          "description": "readme",
          "value": ""
       },
