@@ -5,7 +5,7 @@ from .strings import (
     proof_string,
     forced_scan_string,
 )
-from Charlie_System import (
+from Sibyl_System import (
     
     Charlie_logs,
     Charlie_approved_logs,
