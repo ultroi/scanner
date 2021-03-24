@@ -43,16 +43,16 @@ else:
     MONGO_DB_URL = Config.MONGO_DB_URL
     with open(os.path.join(os.getcwd(), "Sibyl_System\\elevated_users.json"), "r") as f:
         data = json.load(f)
-    SIBYL = data["SIBYL"]
-    ENFORCERS = data["ENFORCERS"]
-    INSPECTORS = data["INSPECTORS"]
-    Sibyl_logs = Config.Sibyl_logs
-    Sibyl_approved_logs = Config.Sibyl_approved_logs
+    CHARLIE = data["CHARLIE"]
+    ENFORCERS = data["EXECUTIONERS"]
+    ADMIRALS = data["ADMIRALS"]
+    charlie_logs = Config.charlie_logs
+    charlie_approved_logs = Config.charlie_approved_logs
     GBAN_MSG_LOGS = Config.GBAN_MSG_LOGS
     BOT_TOKEN = Config.BOT_TOKEN
 
-INSPECTORS.extend(SIBYL)
-ENFORCERS.extend(INSPECTORS)
+ADMIRALS.extend(CHARLIE)
+EXECUTIONERS.extend(ADMIRALS)
 
 session = aiohttp.ClientSession()
 
@@ -62,7 +62,7 @@ from .client_class import SibylClient
 
 System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 
-collection = MONGO_CLIENT["Sibyl"]["Main"]
+collection = MONGO_CLIENT["charlie"]["Main"]
 
 
 async def make_collections() -> str:
@@ -89,7 +89,7 @@ async def make_collections() -> str:
     if await collection.count_documents({"_id": 4}, limit=1) == 0:  # Rank tree list
         sample_dict = {"_id": 4, "data": {}, "standalone": {}}
         sample_dict["data"] = {}
-        for x in SIBYL:
+        for x in CHARLIE:
             sample_dict["data"][str(x)] = {}
             sample_dict["standalone"][str(x)] = {
                 "added_by": 777000,
@@ -101,9 +101,9 @@ async def make_collections() -> str:
 
 def system_cmd(
     pattern=None,
-    allow_sibyl=True,
-    allow_enforcer=False,
-    allow_inspectors=False,
+    allow_charlie=True,
+    allow_executioners=False,
+    allow_admirals=False,
     allow_slash=True,
     force_reply=False,
     **args
@@ -112,12 +112,12 @@ def system_cmd(
         args["pattern"] = re.compile(r"[\?\.!/]" + pattern)
     else:
         args["pattern"] = re.compile(r"[\?\.!]" + pattern)
-    if allow_sibyl and allow_enforcer:
-        args["from_users"] = ENFORCERS
-    elif allow_inspectors and allow_sibyl:
-        args["from_users"] = INSPECTORS
+    if allow_charlie and allow_executioners:
+        args["from_users"] = EXECUTIONERS
+    elif allow_admirals and allow_charlie:
+        args["from_users"] = ADMIRALS
     else:
-        args["from_users"] = SIBYL
+        args["from_users"] = CHARLIE
     if force_reply:
         args["func"] = lambda e: e.is_reply
     return events.NewMessage(**args)
