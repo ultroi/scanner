@@ -35,7 +35,7 @@ if ENV:
     GBAN_MSG_LOGS = int(os.environ.get("GBAN_MSG_LOGS"))
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
 else:
-    import Sibyl_System.config as Config
+    import Charlie_System.config as Config
 
     API_ID_KEY = Config.API_ID
     API_HASH_KEY = Config.API_HASH
@@ -58,9 +58,9 @@ session = aiohttp.ClientSession()
 
 MONGO_CLIENT = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 
-from .client_class import SibylClient
+from .client_class import charlieClient
 
-System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+System = CharlieClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 
 collection = MONGO_CLIENT["charlie"]["Main"]
 
