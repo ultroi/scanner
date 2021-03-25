@@ -62,7 +62,7 @@ async def status(event):
     await msg.edit("Connection successful!")
     time.sleep(2)
     sender = await event.get_sender()
-    user_status = "ADMIRAL" if sender.id in ADMIRALS else "CONQUERERS"
+    user_status = "ADMIRAL" if sender.id in ADMIRALS else "CONQUERER"
     time.sleep(1)
     await msg.edit(on_string.format(Conqueror=user_status, name=sender.first_name))
 
