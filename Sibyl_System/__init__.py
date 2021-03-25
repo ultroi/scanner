@@ -24,18 +24,18 @@ if ENV:
     STRING_SESSION = os.environ.get("STRING_SESSION")
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-    RAW_CHARLIE = os.environ.get("CHARLIE", "")
-    RAW_EXECUTIONERS = os.environ.get("EXECUTIONERS", "")
-    CHARLIE = list(int(x) for x in os.environ.get("CHARLIE", "").split())
+    RAW_SIBYL = os.environ.get("SIBYL", "")
+    RAW_ENFORCERS = os.environ.get("CONQUERES "")
+    SIBYL = list(int(x) for x in os.environ.get("CHARLIE", "").split())
     ADMIRALS = list(int(x) for x in os.environ.get("ADMIRALS", "").split())
-    EXECUTIONERS = list(int(x) for x in os.environ.get("EXECUTIONERS", "").split())
+    ENFORCERS = list(int(x) for x in os.environ.get("EXECUTIONERS", "").split())
     MONGO_DB_URL = os.environ.get("MONGO_DB_URL")
     Sibyl_logs = int(os.environ.get("Sibyl_logs"))
     Sibyl_approved_logs = int(os.environ.get("Sibyl_Approved_Logs"))
     GBAN_MSG_LOGS = int(os.environ.get("GBAN_MSG_LOGS"))
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
 else:
-    import Charlie_System.config as Config
+    import Sibyl_System.config as Config
 
     API_ID_KEY = Config.API_ID
     API_HASH_KEY = Config.API_HASH
@@ -43,16 +43,16 @@ else:
     MONGO_DB_URL = Config.MONGO_DB_URL
     with open(os.path.join(os.getcwd(), "Sibyl_System\\elevated_users.json"), "r") as f:
         data = json.load(f)
-    CHARLIE = data["CHARLIE"]
-    ENFORCERS = data["EXECUTIONERS"]
-    ADMIRALS = data["ADMIRALS"]
-    charlie_logs = Config.charlie_logs
-    charlie_approved_logs = Config.charlie_approved_logs
+    SIBYL = data["CHARLIE"]
+    ENFORCERS= data["EXECUTIONERS"]
+    INSPECTORS = data["ADMIRALS"]
+    Sibyl_logs = Config.Sibyl_logs
+    Sibyl_approved_logs = Config.Sibyl_approved_logs
     GBAN_MSG_LOGS = Config.GBAN_MSG_LOGS
     BOT_TOKEN = Config.BOT_TOKEN
 
-ADMIRALS.extend(CHARLIE)
-EXECUTIONERS.extend(ADMIRALS)
+INSPECTORS.extend(SIBYL)
+ENFORCERS.extend(INSPECTORS)
 
 session = aiohttp.ClientSession()
 
@@ -60,9 +60,9 @@ MONGO_CLIENT = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 
 from .client_class import charlieClient
 
-System = CharlieClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 
-collection = MONGO_CLIENT["charlie"]["Main"]
+collection = MONGO_CLIENT["Sibyl"]["Main"]
 
 
 async def make_collections() -> str:
@@ -89,7 +89,7 @@ async def make_collections() -> str:
     if await collection.count_documents({"_id": 4}, limit=1) == 0:  # Rank tree list
         sample_dict = {"_id": 4, "data": {}, "standalone": {}}
         sample_dict["data"] = {}
-        for x in CHARLIE:
+        for x in Sibyl:
             sample_dict["data"][str(x)] = {}
             sample_dict["standalone"][str(x)] = {
                 "added_by": 777000,
@@ -101,9 +101,9 @@ async def make_collections() -> str:
 
 def system_cmd(
     pattern=None,
-    allow_charlie=True,
-    allow_executioners=False,
-    allow_admirals=False,
+    allow_Sibyl=True,
+    allow_Enforcers=False,
+    allow_Inspectors=False,
     allow_slash=True,
     force_reply=False,
     **args
