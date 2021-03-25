@@ -70,7 +70,7 @@ async def status(event):
 @System.on(system_cmd(pattern="charlie stats"))
 async def stats(event):
     msg = f"Processed {System.processed} messages since last restart."
-    msg += f"\n{len(CONQUERORS)} Conqueror & {len(ADMIRALS)} Admirals"
+    msg += f"\n{len(CONQUERORS)} Conquerors & {len(ADMIRALS)} Admirals"
     g = 0
     async for d in event.client.iter_dialogs(limit=None):
         if d.is_channel and not d.entity.broadcast:
