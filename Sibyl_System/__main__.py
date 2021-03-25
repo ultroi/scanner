@@ -1,12 +1,12 @@
-from charlie_System import (
+from Sibyl_System import (
     System,
     system_cmd,
     make_collections,
-    ADMIRALS,
-    EXECUTIONERS,
-    charlie_logs,
+    Inspectors,
+    Enforcers,
+    Sibyl_logs,
 )
-from charlie_System.strings import on_string
+from Sibyl_System.strings import on_string
 import logging
 import importlib
 import asyncio
@@ -16,7 +16,7 @@ logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.WARNING
 )
 
-from charlie_System.plugins import to_load
+from sibyl_System.plugins import to_load
 
 HELP = {}
 IMPORTED = {}
@@ -62,7 +62,7 @@ async def status(event):
     await msg.edit("Connection successful!")
     time.sleep(2)
     sender = await event.get_sender()
-    user_status = "ADMIRAL" if sender.id in ADMIRALS else "EXECUTIONER"
+    user_status = "ADMIRAL" if sender.id in ADMIRALS else "CONQUERERS"
     time.sleep(1)
     await msg.edit(on_string.format(Enforcer=user_status, name=sender.first_name))
 
