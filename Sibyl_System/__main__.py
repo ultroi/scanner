@@ -3,7 +3,7 @@ from Sibyl_System import (
     system_cmd,
     make_collections,
     ADMIRALS,
-    CONQUEROR,
+    CONQUERORS,
     Sibyl_logs,
 )
 from Sibyl_System.strings import on_string
