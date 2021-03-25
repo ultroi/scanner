@@ -7,14 +7,14 @@ from .strings import (
 )
 from Sibyl_System import (
     
-    Charlie_logs,
-    Charlie_approved_logs,
+    Sibyl_logs,
+    Sibyl_approved_logs,
     GBAN_MSG_LOGS,
     BOT_TOKEN,
     API_ID_KEY,
     API_HASH_KEY,
 )
-from Charlie_System.plugins.Mongo_DB.gbans import update_gban, delete_gban
+from Sibyl_System.plugins.Mongo_DB.gbans import update_gban, delete_gban
 
 
 class SibylClient(TelegramClient):
@@ -23,8 +23,8 @@ class SibylClient(TelegramClient):
     def __init__(self, *args, **kwargs):
         """Declare stuff."""
         self.gban_logs = GBAN_MSG_LOGS
-        self.approved_logs = Charlie_approved_logs
-        self.log = Charlie_logs
+        self.approved_logs = Sibyl_approved_logs
+        self.log = Sibyl_logs
         self.bot = None
         self.processing = 0
         self.processed = 0
@@ -36,7 +36,7 @@ class SibylClient(TelegramClient):
 
     async def gban(
         self,
-        executioner=None,
+        conqueror=None,
         target=None,
         reason=None,
         msg_id=None,
@@ -53,11 +53,11 @@ class SibylClient(TelegramClient):
         if not auto:
             await self.send_message(
                 logs,
-                f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}",
+                f"/gban [{target}](tg://user?id={target}) {reason} // By {conqueror} | #{msg_id}",
             )
             await self.send_message(
                 logs,
-                f"/fban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}",
+                f"/fban [{target}](tg://user?id={target}) {reason} // By {conqueror} | #{msg_id}",
             )
         else:
             await self.send_message(
@@ -70,14 +70,14 @@ class SibylClient(TelegramClient):
             )
         if bot:
             await self.send_message(
-                charlie_approved_logs,
-                bot_gban_string.format(executioner=executioner, scam=target, reason=reason),
+                sibyl_approved_logs,
+                bot_gban_string.format(conqueror=conqueror, scam=target, reason=reason),
             )
         else:
             await self.send_message(
-                Charlie_approved_logs,
+                Sibyl_approved_logs,
                 scan_approved_string.format(
-                    executioner=executioner, scam=target, reason=reason, proof_id=msg_id
+                    conqueror=conqueror, scam=target, reason=reason, proof_id=msg_id
                 ),
             )
         if not target:
@@ -86,7 +86,7 @@ class SibylClient(TelegramClient):
             victim=int(target),
             reason=reason,
             proof_id=int(msg_id),
-            executioner=int(executioner),
+            conqueror=int(conqueror),
             message=message,
         )
 
