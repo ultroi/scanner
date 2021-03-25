@@ -25,10 +25,10 @@ if ENV:
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
     RAW_SIBYL = os.environ.get("SIBYL", "")
-    RAW_ENFORCERS = os.environ.get("CONQUERES "")
-    SIBYL = list(int(x) for x in os.environ.get("CHARLIE", "").split())
+    RAW_ENFORCERS = os.environ.get("ENFORCERS", "")
+    CHARLIE = list(int(x) for x in os.environ.get("CHARLIE", "").split())
     ADMIRALS = list(int(x) for x in os.environ.get("ADMIRALS", "").split())
-    ENFORCERS = list(int(x) for x in os.environ.get("EXECUTIONERS", "").split())
+    CONQUEROR = list(int(x) for x in os.environ.get("CONQUEROR", "").split())
     MONGO_DB_URL = os.environ.get("MONGO_DB_URL")
     Sibyl_logs = int(os.environ.get("Sibyl_logs"))
     Sibyl_approved_logs = int(os.environ.get("Sibyl_Approved_Logs"))
@@ -43,22 +43,22 @@ else:
     MONGO_DB_URL = Config.MONGO_DB_URL
     with open(os.path.join(os.getcwd(), "Sibyl_System\\elevated_users.json"), "r") as f:
         data = json.load(f)
-    SIBYL = data["CHARLIE"]
-    ENFORCERS= data["EXECUTIONERS"]
-    INSPECTORS = data["ADMIRALS"]
+    CHARLIE = data["CHARLIE"]
+    CONQUEROR = data["CONQUEROR"]
+    ADMIRALS = data["ADMIRALS"]
     Sibyl_logs = Config.Sibyl_logs
     Sibyl_approved_logs = Config.Sibyl_approved_logs
     GBAN_MSG_LOGS = Config.GBAN_MSG_LOGS
     BOT_TOKEN = Config.BOT_TOKEN
 
-INSPECTORS.extend(SIBYL)
-ENFORCERS.extend(INSPECTORS)
+ADMIRALS.extend(CHARLIE)
+CONQUERORS.extend(ADMIRALS)
 
 session = aiohttp.ClientSession()
 
 MONGO_CLIENT = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 
-from .client_class import charlieClient
+from .client_class import SibylClient
 
 System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 
@@ -89,7 +89,7 @@ async def make_collections() -> str:
     if await collection.count_documents({"_id": 4}, limit=1) == 0:  # Rank tree list
         sample_dict = {"_id": 4, "data": {}, "standalone": {}}
         sample_dict["data"] = {}
-        for x in Sibyl:
+        for x in CHARLIE:
             sample_dict["data"][str(x)] = {}
             sample_dict["standalone"][str(x)] = {
                 "added_by": 777000,
@@ -101,9 +101,9 @@ async def make_collections() -> str:
 
 def system_cmd(
     pattern=None,
-    allow_Sibyl=True,
-    allow_Enforcers=False,
-    allow_Inspectors=False,
+    allow_Charlie=True,
+    allow_Conquerors=False,
+    allow_Admirals=False,
     allow_slash=True,
     force_reply=False,
     **args
@@ -112,8 +112,8 @@ def system_cmd(
         args["pattern"] = re.compile(r"[\?\.!/]" + pattern)
     else:
         args["pattern"] = re.compile(r"[\?\.!]" + pattern)
-    if allow_charlie and allow_executioners:
-        args["from_users"] = EXECUTIONERS
+    if allow_charlie and allow_conquerors:
+        args["from_users"] = CONQUERORS
     elif allow_admirals and allow_charlie:
         args["from_users"] = ADMIRALS
     else:
