@@ -2,8 +2,8 @@ from Sibyl_System import (
     System,
     system_cmd,
     make_collections,
-    Inspectors,
-    Enforcers,
+    ADMIRAL,
+    CONQUEROR,
     Sibyl_logs,
 )
 from Sibyl_System.strings import on_string
