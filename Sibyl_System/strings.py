@@ -12,7 +12,7 @@ You are an authorized user!
 scan_request_string = """
 $SCAN
 Cymatic Scan request!
-**Executioner:** {executioner} 
+**Conqueror:** {conqueror} 
 **User scanned:** {spammer}
 **Reason:** `{reason}`
 **Scan Source:** {chat}
@@ -20,7 +20,7 @@ Cymatic Scan request!
 """
 forced_scan_string = """
 $FORCED
-**Admiral:** {ins}
+**Admiral:** {adm}
 **Target:** {spammer}
 **Reason:** `{reason}`
 **Scan Source:** {chat}
@@ -46,13 +46,13 @@ scan_approved_string = """
 **Target User:** {scam}
 **Crime Coefficient:** `Over 300`
 **Reason:** `{reason}`
-**Executioner:** `{executioner}`
+**Conqueror:** `{conqueror}`
 **Case Number:** `{proof_id}`
 """
 
 bot_gban_string = """
 #DestroyDecomposer
-**Executioner:** `{executioner}`
+**conqueror:** `{conqueror}`
 **Target User:** {scam}
 **Reason:** `{reason}`
 """
