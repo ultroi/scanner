@@ -70,7 +70,7 @@ class SibylClient(TelegramClient):
             )
         if bot:
             await self.send_message(
-                sibyl_approved_logs,
+                Sibyl_approved_logs,
                 bot_gban_string.format(conqueror=conqueror, scam=target, reason=reason),
             )
         else:
