@@ -30,7 +30,7 @@ class SibylClient(TelegramClient):
         self.processed = 0
         if BOT_TOKEN:
             self.bot = TelegramClient(
-                "Charlieystem", api_id=API_ID_KEY, api_hash=API_HASH_KEY
+                "Sibylystem", api_id=API_ID_KEY, api_hash=API_HASH_KEY
             ).start(bot_token=BOT_TOKEN)
         super().__init__(*args, **kwargs)
 
