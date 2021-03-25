@@ -28,7 +28,7 @@ if ENV:
     RAW_ENFORCERS = os.environ.get("ENFORCERS", "")
     CHARLIE = list(int(x) for x in os.environ.get("CHARLIE", "").split())
     ADMIRALS = list(int(x) for x in os.environ.get("ADMIRALS", "").split())
-    CONQUEROR = list(int(x) for x in os.environ.get("CONQUEROR", "").split())
+    CONQUERORS = list(int(x) for x in os.environ.get("CONQUERORS", "").split())
     MONGO_DB_URL = os.environ.get("MONGO_DB_URL")
     Sibyl_logs = int(os.environ.get("Sibyl_logs"))
     Sibyl_approved_logs = int(os.environ.get("Sibyl_Approved_Logs"))
