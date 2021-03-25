@@ -101,9 +101,9 @@ async def make_collections() -> str:
 
 def system_cmd(
     pattern=None,
-    allow_Charlie=True,
-    allow_Conquerors=False,
-    allow_Admirals=False,
+    allow_charlie=True,
+    allow_conquerors=False,
+    allow_admirals=False,
     allow_slash=True,
     force_reply=False,
     **args
