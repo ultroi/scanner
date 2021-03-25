@@ -1,4 +1,4 @@
-from Sibyl_System import System, SIBYL, ENFORCERS, Sibyl_logs, system_cmd
+from Sibyl_System import System, ADMIRALS, CONQUERORS, Sibyl_logs, system_cmd
 import re
 import Sibyl_System.plugins.Mongo_DB.message_blacklist as db
 import Sibyl_System.plugins.Mongo_DB.name_blacklist as wlc_collection
