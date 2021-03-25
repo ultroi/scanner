@@ -43,7 +43,7 @@ for load in to_load:
 
 @System.on(system_cmd(pattern=r"status", allow_conqueror=True))
 async def status(event):
-    msg = await event.reply("Portable Psychological Diagnosis and Suppression System.")
+    msg = await event.reply("CONNECTING TO THE CORE FOR DIAGNOSIS VERIFICATION.")
     time.sleep(1)
     await msg.edit("Initialising ■□□□□□")
     time.sleep(1)
