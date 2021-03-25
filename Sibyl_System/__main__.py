@@ -64,7 +64,7 @@ async def status(event):
     sender = await event.get_sender()
     user_status = "ADMIRAL" if sender.id in ADMIRALS else "CONQUERERS"
     time.sleep(1)
-    await msg.edit(on_string.format(Enforcer=user_status, name=sender.first_name))
+    await msg.edit(on_string.format(Conqueror=user_status, name=sender.first_name))
 
 
 @System.on(system_cmd(pattern="charlie stats"))
