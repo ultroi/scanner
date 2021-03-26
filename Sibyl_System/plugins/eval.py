@@ -7,7 +7,7 @@ import inspect
 # Thanks to stackoverflow for existing https://stackoverflow.com/questions/3906232/python-get-the-print-output-in-an-exec-statement
 
 
-@System.on(system_cmd(pattern=r"sibyl (exec|execute|x|ex)"))
+@System.on(system_cmd(pattern=r"charlie (exec|execute|x|ex)"))
 async def run(event):
     code = event.text.split(" ", 2)
     if len(code) == 2:
