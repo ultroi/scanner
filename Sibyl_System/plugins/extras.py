@@ -3,8 +3,8 @@ from telethon.tl.functions.channels import LeaveChannelRequest
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 
-from Sibyl_System.plugins.Mongo_DB.tree import add_inspector, add_enforcers, get_data
-from Sibyl_System import ENFORCERS, INSPECTORS, SIBYL, session
+from Sibyl_System.plugins.Mongo_DB.tree import add_admirals, add_conquerors, get_data
+from Sibyl_System import CONQUERORS, ADMIRALS, CHARLIE, session
 from Sibyl_System import System, system_cmd
 from Sibyl_System import Sibyl_logs
 
@@ -28,7 +28,7 @@ except BaseException:
 json_file = os.path.join(os.getcwd(), "Sibyl_System\\elevated_users.json")
 
 
-@System.on(system_cmd(pattern=r"addenf", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"addenf", allow_admirals=True))
 async def addenf(event) -> None:
     if event.message.reply_to_msg_id:
         replied = await event.get_reply_message()
@@ -44,31 +44,31 @@ async def addenf(event) -> None:
             await event.reply(
                 "I haven't interacted with that user! Meh, Will add them anyway"
             )
-    if u_id in ENFORCERS:
+    if u_id in CONQUERORS:
         await System.send_message(event.chat_id, "That person is already Enforcer!")
         return
     if HEROKU:
-        config["ENFORCERS"] = os.environ.get("ENFORCERS") + " " + str(u_id)
+        config["CONQUERORS"] = os.environ.get("CONQUERORS") + " " + str(u_id)
     else:
         with open(json_file, "r") as file:
             data = json.load(file)
-        data["ENFORCERS"].append(u_id)
+        data["CONQUERORS"].append(u_id)
         with open(json_file, "w") as file:
             json.dump(data, file, indent=4)
-        await System.send_message(event.chat_id, "Added to enforcers, Restarting...")
-        if not event.from_id.user_id in SIBYL:
-            await add_enforcers(event.from_id.user_id, u_id)
+        await System.send_message(event.chat_id, "Added to conquerors, Restarting...")
+        if not event.from_id.user_id in CHARLIE:
+            await add_conquerors(event.from_id.user_id, u_id)
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
         quit()
-    if not event.from_id.user_id in SIBYL:
-        await add_enforcers(event.from_id.user_id, u_id)
+    if not event.from_id.user_id in CHARLIE:
+        await add_conquerors(event.from_id.user_id, u_id)
     await System.send_message(
         event.chat_id, f"Added [{u_id}](tg://user?id={u_id}) to Enforcers"
     )
 
 
-@System.on(system_cmd(pattern=r"rmenf", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"rmenf", allow_admirals=True))
 async def rmenf(event) -> None:
     if event.message.reply_to_msg_id:
         replied = await event.get_reply_message()
@@ -80,18 +80,18 @@ async def rmenf(event) -> None:
     except BaseException:
         await event.reply("Invalid ID/Username!")
     u_id = int(u_id)
-    if u_id not in ENFORCERS:
+    if u_id not in CONQUERORS:
         await System.send_message(event.chat_id, "Is that person even a Enforcer?")
         return
     if HEROKU:
         str(u_id)
-        ENF = os.environ.get("ENFORCERS")
+        ENF = os.environ.get("CONQUERORS")
         if ENF.endswith(u_id):
-            config["ENFORCERS"] = ENF.strip(" " + str(u_id))
+            config["CONQUERORS"] = ENF.strip(" " + str(u_id))
         elif ENF.startswith(u_id):
-            config["ENFORCERS"] = ENF.strip(str(u_id) + " ")
+            config["CONQUERORS"] = ENF.strip(str(u_id) + " ")
         else:
-            config["ENFORCERS"] = ENF.strip(" " + str(u_id) + " ")
+            config["CONQUERORS"] = ENF.strip(" " + str(u_id) + " ")
     else:
         with open(json_file, "r") as file:
             data = json.load(file)
