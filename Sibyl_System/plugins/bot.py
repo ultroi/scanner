@@ -255,7 +255,7 @@ async def check_user(event):
                     msg += "I can't ban users here, Changed mode to `warn`"
                     await db.change_settings(event.chat_id, True, "warn")
             await event.respond(msg)
-    elif user.id in INSPECTORS or user.id in ENFORCERS:
+    elif user.id in ADMIRALS or user.id in CONQUERORS:
         return
     else:
         u = await get_gban(user.id)
