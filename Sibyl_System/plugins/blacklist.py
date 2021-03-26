@@ -81,7 +81,7 @@ async def listbl(event):
 @System.bot.on(events.NewMessage(incoming=True))
 async def auto_gban_request(event):
     System.processing += 1
-    if event.sender_id in ENFORCERS or event.sender_id in SIBYL:
+    if event.sender_id in CONQUERORS or event.sender_id in CHARLIE:
         return
     if event.chat_id == Sibyl_logs:
         return
