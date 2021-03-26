@@ -125,7 +125,7 @@ async def callback_handler(event):
                 dict_["reason"] = r.message
                 data[index] = dict_
             msg = f"New Reason:\nU_ID: {dict_['u_id']}\n"
-            msg += f"Enforcer: {dict_['enforcer']}\n"
+            msg += f"Conqueror: {dict_['conqueror']}\n"
             msg += f"Source: {dict_['source']}\n"
             msg += f"Reason: {dict_['reason']}\n"
             msg += f"Message: {dict_['message']}\n"
@@ -177,7 +177,7 @@ async def inline_handler(event):
             u_id, enforcer, source, reason, message = split
             dict_ = {
                 "u_id": u_id,
-                "enforcer": enforcer,
+                "conqueror": conqueror,
                 "source": source,
                 "reason": reason,
                 "message": message,
@@ -193,7 +193,7 @@ async def inline_handler(event):
             result = builder.article(
                 "Output",
                 text=scan_request_string.format(
-                    enforcer=enforcer,
+                    conqueror=conqueror,
                     spammer=u_id,
                     reason=reason,
                     chat=source,
