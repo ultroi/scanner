@@ -1,4 +1,4 @@
-from Sibyl_System import System, session, INSPECTORS, ENFORCERS, Sibyl_logs
+from Sibyl_System import System, session, ADMIRALS, CONQUERORS, Sibyl_logs
 from Sibyl_System.strings import proof_string, scan_request_string, reject_string
 from Sibyl_System.plugins.Mongo_DB.gbans import get_gban, get_gban_by_proofid
 import Sibyl_System.plugins.Mongo_DB.bot_settings as db
