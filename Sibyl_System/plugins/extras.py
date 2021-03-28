@@ -224,7 +224,7 @@ async def rmins(event) -> None:
     )
 
 
-@System.on(system_cmd(pattern=r"info ", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"info ", allow_admirals=True))
 async def info(event) -> None:
     data = (await get_data())["standalone"]
     if not event.text.split(" ", 1)[1] in data.keys():
@@ -236,10 +236,10 @@ async def info(event) -> None:
     await event.reply(msg)
 
 
-@System.on(system_cmd(pattern=r"inspectors", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"admirals", allow_admirals=True))
 async def listuserI(event) -> None:
-    msg = "Inspectors:\n"
-    for z in INSPECTORS:
+    msg = "Admirals:\n"
+    for z in ADMIRALS:
         try:
             user = await System.get_entity(z)
             msg += f"•[{user.first_name}](tg://user?id={user.id}) | {z}\n"
@@ -248,7 +248,7 @@ async def listuserI(event) -> None:
     await System.send_message(event.chat_id, msg)
 
 
-@System.on(system_cmd(pattern=r"resolve", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"resolve", allow_admirals=True))
 async def resolve(event) -> None:
     try:
         link = event.text.split(" ", 1)[1]
@@ -288,7 +288,7 @@ async def leave(event) -> None:
         await System.send_message(event.chat_id, f"Sibyl has left chat[{link}]")
 
 
-@System.on(system_cmd(pattern=r"get_redirect ", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"get_redirect ", allow_admirals=True))
 async def redirect(event) -> None:
     try:
         of = event.text.split(" ", 1)[1]
@@ -302,16 +302,16 @@ async def redirect(event) -> None:
 
 help_plus = """
 Help!
-`addenf` - Adds a user as an enforcer.
+`addcon` - Adds a user as an conqueror.
 Format : addenf <user id / as reply>
-`rmenf` - Removes a user from enforcers.
+`rmcon` - Removes a user from conqueror.
 Format : rmenf <user id / as reply>
-`enforcers` - Lists all enforcers.
-`addins` - Adds a user as an Inspector.
+`conquerors` - Lists all econquerors.
+`addadm` - Adds a user as an Admirals.
 Format : addins <user id / as reply>
-`rmins` - Removes a user from Inspector.
+`rmadm` - Removes a user from Admirals.
 Format : rmins <user id / as reply>
-`inspector` - Lists all inspectors.
+`Admirals` - Lists all admirals.
 `join` - Joins a chat.
 Format : join <chat username or invite link>
 `leave` - Leaves a chat.
@@ -322,7 +322,7 @@ Format : resolve <chat invite link>
 Format : get_redirect <URL>
 **Notes:**
 `/` `?` `.` `!` are supported prefixes.
-**Example:** `/addenf` or `?addenf` or `.addenf`
+**Example:** `/addcon` or `?addcon` or `.addcon`
 """
 
 __plugin_name__ = "extras"
