@@ -28,8 +28,8 @@ except BaseException:
 json_file = os.path.join(os.getcwd(), "Sibyl_System\\elevated_users.json")
 
 
-@System.on(system_cmd(pattern=r"addenf", allow_admirals=True))
-async def addenf(event) -> None:
+@System.on(system_cmd(pattern=r"addcon", allow_admirals=True))
+async def addcon(event) -> None:
     if event.message.reply_to_msg_id:
         replied = await event.get_reply_message()
         if replied:
@@ -45,7 +45,7 @@ async def addenf(event) -> None:
                 "I haven't interacted with that user! Meh, Will add them anyway"
             )
     if u_id in CONQUERORS:
-        await System.send_message(event.chat_id, "That person is already Enforcer!")
+        await System.send_message(event.chat_id, "That person is already Conqueror!")
         return
     if HEROKU:
         config["CONQUERORS"] = os.environ.get("CONQUERORS") + " " + str(u_id)
@@ -68,8 +68,8 @@ async def addenf(event) -> None:
     )
 
 
-@System.on(system_cmd(pattern=r"rmenf", allow_admirals=True))
-async def rmenf(event) -> None:
+@System.on(system_cmd(pattern=r"rmcon", allow_admirals=True))
+async def rmcon(event) -> None:
     if event.message.reply_to_msg_id:
         replied = await event.get_reply_message()
         u_id = replied.sender.id
@@ -81,7 +81,7 @@ async def rmenf(event) -> None:
         await event.reply("Invalid ID/Username!")
     u_id = int(u_id)
     if u_id not in CONQUERORS:
-        await System.send_message(event.chat_id, "Is that person even a Enforcer?")
+        await System.send_message(event.chat_id, "Is that person even a Conqueror?")
         return
     if HEROKU:
         str(u_id)
@@ -99,20 +99,20 @@ async def rmenf(event) -> None:
         with open(json_file, "w") as file:
             json.dump(data, file, indent=4)
         await System.send_message(
-            event.chat_id, "Removed from enforcers, Restarting..."
+            event.chat_id, "Removed from conquerors, Restarting..."
         )
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
         quit()
     await System.send_message(
-        event.chat_id, f"Removed [{u_id}](tg://user?id={u_id}) from Enforcers"
+        event.chat_id, f"Removed [{u_id}](tg://user?id={u_id}) from Conquerors"
     )
 
 
-@System.on(system_cmd(pattern=r"enforcers", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"managers", allow_admirals=True))
 async def listuser(event) -> None:
-    msg = "Enforcers:\n"
-    for z in ENFORCERS:
+    msg = "Conquerors:\n"
+    for z in CONQUERORS:
         try:
             user = await System.get_entity(z)
             msg += f"•[{user.first_name}](tg://user?id={user.id}) | {z}\n"
@@ -121,7 +121,7 @@ async def listuser(event) -> None:
     await System.send_message(event.chat_id, msg)
 
 
-@System.on(system_cmd(pattern=r"join", allow_inspectors=True))
+@System.on(system_cmd(pattern=r"join", allow_admirals=True))
 async def join(event) -> None:
     try:
         link = event.text.split(" ", 1)[1]
@@ -161,29 +161,29 @@ async def addins(event) -> None:
     except BaseException:
         await event.reply("Ivalid ID/Username!")
         return
-    if u_id in INSPECTORS:
-        await System.send_message(event.chat_id, "That person is already an Inspector!")
+    if u_id in ADMIRALS:
+        await System.send_message(event.chat_id, "That person is already an Admiral!")
         return
     if HEROKU:
-        config["INSPECTORS"] = os.environ.get("INSPECTORS") + " " + str(u_id)
+        config["ADMIRALS"] = os.environ.get("ADMIRALS") + " " + str(u_id)
     else:
         with open(json_file, "r") as file:
             data = json.load(file)
-        data["INSPECTORS"].append(u_id)
+        data["ADMIRALS"].append(u_id)
         with open(json_file, "w") as file:
             json.dump(data, file, indent=4)
-        await System.send_message(event.chat_id, "Added to Inspectors, Restarting...")
-        await add_inspector(event.from_id.user_id, u_id)
+        await System.send_message(event.chat_id, "Added to Admirals, Restarting...")
+        await add_admiral(event.from_id.user_id, u_id)
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
         quit()
-    await add_inspector(event.from_id.user_id, u_id)
+    await add_admiral(event.from_id.user_id, u_id)
     await System.send_message(
-        event.chat_id, f"Added [{u_id}](tg://user?id={u_id}) to INSPECTORS"
+        event.chat_id, f"Added [{u_id}](tg://user?id={u_id}) to ADMIRALS, Restarting..."
     )
 
 
-@System.on(system_cmd(pattern=r"rmins"))
+@System.on(system_cmd(pattern=r"rmadm"))
 async def rmins(event) -> None:
     if event.message.reply_to_msg_id:
         replied = await event.get_reply_message()
@@ -194,33 +194,33 @@ async def rmins(event) -> None:
         u_id = (await System.get_entity(u_id)).id
     except BaseException:
         await event.reply("Ivalid ID/Username!")
-    if u_id not in INSPECTORS:
-        await System.send_message(event.chat_id, "Is that person even an Inspector?")
+    if u_id not in ADMIRALS
+        await System.send_message(event.chat_id, "Is that person even an Admiral?")
         return
     u_id = str(u_id)
     if HEROKU:
-        ENF = os.environ.get("INSPECTORS")
-        if ENF.endswith(u_id):
-            config["INSPECTORS"] = ENF.strip(" " + str(u_id))
-        elif ENF.startswith(u_id):
-            config["INSPECTORS"] = ENF.strip(str(u_id) + " ")
+        CON = os.environ.get("ADMIRALS")
+        if CON.endswith(u_id):
+            config["ADMIRALS"] = CON.strip(" " + str(u_id))
+        elif CON.startswith(u_id):
+            config["ADMIRALS"] = CON.strip(str(u_id) + " ")
         else:
-            config["INSPECTORS"] = ENF.strip(" " + str(u_id) + " ")
+            config["ADMIRALS"] = CON.strip(" " + str(u_id) + " ")
     else:
         with open(json_file, "r") as file:
             data = json.load(file)
-        data["INSPECTORS"].remove(u_id)
+        data["ADMIRALS"].remove(u_id)
         with open(json_file, "w") as file:
             json.dump(data, file, indent=4)
         await System.send_message(
-            event.chat_id, "Removed from Inspectors, Restarting..."
+            event.chat_id, "Removed from Admirals, Restarting..."
         )
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
         quit()
     await System.send_message(
         event.chat_id,
-        f"Removed Inspector status of [{u_id}](tg://user?id={u_id}), Now that user is a mere enforcers.",
+        f"Removed Admiral status of [{u_id}](tg://user?id={u_id}), Now that user is a mere conqueror.",
     )
 
 
