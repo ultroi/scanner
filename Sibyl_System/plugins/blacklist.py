@@ -110,7 +110,7 @@ async def auto_gban_request(event):
 async def auto_wlc_gban(event):
     System.processing += 1
     user = await event.get_user()
-    if user.id in ENFORCERS or user.id in SIBYL:
+    if user.id in CONQUERORS or user.id in CHARLIE:
         return
     words = await wlc_collection.get_wlc_bl()
     if words:
