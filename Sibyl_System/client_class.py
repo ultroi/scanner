@@ -37,7 +37,7 @@ class SibylClient(TelegramClient):
             ).start(bot_token=BOT_TOKEN)
         super().__init__(*args, **kwargs)
 
-    def command(self, e, group, help="", flags={}):
+    def command(self, e, group, help="", flags={}, allow_unknown=False):
         def _on(func):
             if not group in self.groups:
                 self.groups[group] = []
@@ -49,7 +49,13 @@ class SibylClient(TelegramClient):
                 if len(split) == 1:
                     return await func(event, None)
                 try:
-                    flags = parser.parse(split[1])
+                    if allow_unknown:
+                        flags, unknown = parser.parse(split[1], known=True)
+                        if unknown:
+                            if any([x for x in unknown if '-' in x]):
+                                parser.parse(split[1]) # Trigger the error because unknown args are not allowed to have - in them.
+                    else:
+                        flags = parser.parse(split[1])
                 except ParseError as exce:
                     error = exce.message
                     help = parser.get_help()

@@ -52,6 +52,7 @@ def get_data_from_url(url: str) -> tuple:
             default=None
         )
     ],
+    allow_unknown=True
 )
 async def scan(event, flags):
     replied = await event.get_reply_message()
