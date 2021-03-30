@@ -45,11 +45,15 @@ def get_data_from_url(url: str) -> tuple:
             "Original Sender. Using this will gban orignal sender instead of forwarder (Enforcers+)",
             "store_true",
         ),
+        Flag(
+            "-r",
+            "Reason to scan message with."
+        )
     ],
 )
 async def scan(event, flags):
     replied = await event.get_reply_message()
-    reason = seprate_flags(event.text)
+    reason = flags.r
     if len(reason.split(" ", 1)) == 1:
         return
     split = reason.strip().split(" ", 1)

@@ -31,7 +31,7 @@ class FlagParser:
         self.parser = ArgumentParser(add_help=False, description=desc)
         for flag in flags:
             self.parser.add_argument(*flag.args, **flag.kwargs)
-        self.parser.add_argument("-h", "--help", help="Display this message.")
+        self.parser.add_argument("-h", "--help", help="Display this message.", action="store_true")
 
     def parse(self, text):
         text = shlex.split(text)
