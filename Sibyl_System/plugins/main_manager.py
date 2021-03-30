@@ -59,7 +59,10 @@ async def scan(event, flags):
     if flags.r:
         reason = " ".join(flags.r)
     else:
-        reason = seprate_flags(event.text.split(' ')).strip()
+        split = event.text.split(' ', 1)
+        if len(split) == 1:
+            return
+        reason = seprate_flags(split[1]).strip()
         if not reason:
             return
     if flags.u:
