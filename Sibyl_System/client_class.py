@@ -55,7 +55,7 @@ class SibylClient(TelegramClient):
                     help = parser.get_help()
                     await event.reply(f"{error}\n{help}")
                     return
-                if flags.h:
+                if flags.help:
                     await event.reply(f"{parser.get_help()}")
                     return
                 return func(event, flags)
