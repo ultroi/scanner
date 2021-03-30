@@ -34,7 +34,7 @@ def get_data_from_url(url: str) -> tuple:
         Flag(
             "-f",
             "Force approve a scan. Using this with scan will auto approve it (Inspectors+)",
-            "store_true",
+            "store_true"
         ),
         Flag(
             "-u",
@@ -47,7 +47,8 @@ def get_data_from_url(url: str) -> tuple:
         ),
         Flag(
             "-r",
-            "Reason to scan message with."
+            "Reason to scan message with.",
+            nargs="*"
         )
     ],
 )
