@@ -6,7 +6,7 @@ from Sibyl_System.strings import (
     forced_scan_string,
 )
 from Sibyl_System import System, system_cmd
-from Sibyl_System.utils import seprate_flags
+from Sibyl_System.utils import seprate_flags, Flag
 
 import re
 
@@ -26,10 +26,30 @@ def get_data_from_url(url: str) -> tuple:
     return (match.group(4), match.group(5))
 
 
-@System.on(system_cmd(pattern=r"scan ", allow_enforcer=True))
-async def scan(event):
+@System.command(
+    event=system_cmd(pattern=r"scan ", allow_enforcer=True),
+    group="main",
+    help="Reply to a message WITH reason to send a request to Inspect",
+    flags=[
+        Flag(
+            "-f",
+            "Force approve a scan. Using this with scan will auto approve it (Inspectors+)",
+            "store_true",
+        ),
+        Flag(
+            "-u",
+            "Grab message from url. Use this with message link to scan the user the message link redirects to. (Enforcers+)",
+        ),
+        Flag(
+            "-o",
+            "Original Sender. Using this will gban orignal sender instead of forwarder (Enforcers+)",
+            "store_true",
+        ),
+    ],
+)
+async def scan(event, flags):
     replied = await event.get_reply_message()
-    flags, reason = seprate_flags(event.text)
+    reason = seprate_flags(event.text)
     if len(reason.split(" ", 1)) == 1:
         return
     split = reason.strip().split(" ", 1)
@@ -79,7 +99,9 @@ async def scan(event):
             if reply.from_name:
                 sender = f"[{reply.from_name}](tg://user?id={reply.from_id.user_id})"
             else:
-                sender = f"[{reply.from_id.user_id}](tg://user?id={reply.from_id.user_id})"
+                sender = (
+                    f"[{reply.from_id.user_id}](tg://user?id={reply.from_id.user_id})"
+                )
     else:
         if replied.sender.id in ENFORCERS:
             return
@@ -136,10 +158,12 @@ async def revive(event):
         return
     a = await event.reply("Reverting bans..")
     if not user_id.isnumeric():
-        await a.edit('Invalid id')
+        await a.edit("Invalid id")
         return
-    if not (await System.ungban(int(user_id), f" By //{(await event.get_sender()).id}")):
-        await a.edit('User is not gbanned.')
+    if not (
+        await System.ungban(int(user_id), f" By //{(await event.get_sender()).id}")
+    ):
+        await a.edit("User is not gbanned.")
         return
     await a.edit("Revert request sent to sibyl. This might take 10minutes or so.")
 
