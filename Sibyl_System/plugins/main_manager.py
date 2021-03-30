@@ -54,7 +54,7 @@ async def scan(event, flags):
         return
     split = reason.strip().split(" ", 1)
     reason = reason.strip().split(" ", 1)[1].strip()
-    if "u" in flags.keys():
+    if flags.u:
         url = reason
         data = get_data_from_url(url)
         if not data:
@@ -87,7 +87,7 @@ async def scan(event, flags):
         return
     if not event.is_reply:
         return
-    if "o" in flags.keys():
+    if flags.o:
         if replied.fwd_from:
             reply = replied.fwd_from
             target = reply.from_id.user_id
@@ -109,7 +109,7 @@ async def scan(event, flags):
         target = replied.sender.id
     executer = await event.get_sender()
     req_proof = req_user = False
-    if "f" in flags.keys() and executer.id in INSPECTORS:
+    if flags.f and executer.id in INSPECTORS:
         approve = True
     else:
         approve = False
