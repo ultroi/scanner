@@ -39,7 +39,6 @@ class SibylClient(TelegramClient):
 
     def command(self, e, group, help="", flags={}):
         def _on(func):
-            self.add_event_handler(func, e)
             if not group in self.groups:
                 self.groups[group] = []
             self.groups[group].append(func.__name__)
@@ -60,7 +59,7 @@ class SibylClient(TelegramClient):
                     await event.reply(f"{parser.get_help()}")
                     return
                 return func(event, flags)
-
+            self.add_event_handler(flags_decorator, e)
             return flags_decorator
 
         return _on
