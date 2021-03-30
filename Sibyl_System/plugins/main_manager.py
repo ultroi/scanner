@@ -27,7 +27,7 @@ def get_data_from_url(url: str) -> tuple:
 
 
 @System.command(
-    event=system_cmd(pattern=r"scan ", allow_enforcer=True),
+    e=system_cmd(pattern=r"scan ", allow_enforcer=True),
     group="main",
     help="Reply to a message WITH reason to send a request to Inspect",
     flags=[
