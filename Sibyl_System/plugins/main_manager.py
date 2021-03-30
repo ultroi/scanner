@@ -33,16 +33,16 @@ def get_data_from_url(url: str) -> tuple:
     flags=[
         Flag(
             "-f",
-            "Force approve a scan. Using this with scan will auto approve it (Inspectors+)",
+            "Force approve a scan. Using this with scan will auto approve it",
             "store_true"
         ),
         Flag(
             "-u",
-            "Grab message from url. Use this with message link to scan the user the message link redirects to. (Enforcers+)",
+            "Grab message from url. Use this with message link to scan the user the message link redirects to.",
         ),
         Flag(
             "-o",
-            "Original Sender. Using this will gban orignal sender instead of forwarder (Enforcers+)",
+            "Original Sender. Using this will gban orignal sender instead of forwarder.",
             "store_true",
         ),
         Flag(
