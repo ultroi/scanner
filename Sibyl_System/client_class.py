@@ -1,5 +1,5 @@
 from telethon import TelegramClient
-from functool import wraps
+from functools import wraps
 from .strings import (
     scan_approved_string,
     bot_gban_string,
