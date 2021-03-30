@@ -6,6 +6,8 @@ from motor import motor_asyncio
 import aiohttp
 import json
 from datetime import datetime
+
+import traceback
 import logging
 import os
 import re
@@ -60,7 +62,11 @@ MONGO_CLIENT = motor_asyncio.AsyncIOMotorClient(MONGO_DB_URL)
 
 from .client_class import SibylClient
 
-System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+try:
+    System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+except:
+    print(traceback.format_exc())
+    exit(1)
 
 collection = MONGO_CLIENT["Sibyl"]["Main"]
 

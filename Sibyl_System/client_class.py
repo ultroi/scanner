@@ -44,7 +44,6 @@ class SibylClient(TelegramClient):
                 self.groups[group] = []
             self.groups[group].append(func.__name__)
             parser = FlagParser(flags, help)
-
             @wraps(func)
             async def flags_decorator(event):
                 split = event.text.split(" ", 1)
