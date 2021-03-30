@@ -54,7 +54,7 @@ def get_data_from_url(url: str) -> tuple:
 )
 async def scan(event, flags):
     replied = await event.get_reply_message()
-    reason = flags.r
+    reason = " ".join(flags.r)
     if flags.u:
         url = reason
         data = get_data_from_url(url)
