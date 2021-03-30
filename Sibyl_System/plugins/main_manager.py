@@ -59,7 +59,9 @@ async def scan(event, flags):
     if flags.r:
         reason = " ".join(flags.r)
     else:
-        reason = event.text
+        reason = seprate_flags(event.text.split(' ')).strip()
+        if not reason:
+            return
     if flags.u:
         url = flags.u
         data = get_data_from_url(url)
