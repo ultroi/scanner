@@ -83,7 +83,7 @@ async def scan(event, flags):
                 spammer=message.from_id.user_id,
                 chat=f"https://t.me/{data[0]}/{data[1]}",
                 message=message.text,
-                reason=reason.split(" ", 1)[1].strip(),
+                reason=reason,
             ),
         )
         return
