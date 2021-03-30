@@ -49,13 +49,16 @@ def get_data_from_url(url: str) -> tuple:
             "-r",
             "Reason to scan message with.",
             nargs="*",
-            action=""
+            default=None
         )
     ],
 )
 async def scan(event, flags):
     replied = await event.get_reply_message()
-    reason = " ".join(flags.r)
+    if flags.r:
+        reason = " ".join(flags.r)
+    else:
+        reason = event.text
     if flags.u:
         url = flags.u
         data = get_data_from_url(url)

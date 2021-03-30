@@ -9,13 +9,15 @@ FLAG_REGEX = re.compile(r"-\w+")
 
 
 class Flag:
-    def __init__(self, prefix, help, action=None, nargs=None):
+    def __init__(self, prefix, help, action=None, nargs=None, default="dummy_default"):
         self.args = (prefix,)
         self.kwargs = {"help": help}
         if action:
             self.kwargs["action"] = action
         if nargs:
             self.kwargs["nargs"] = nargs
+        if default != "dummy_default":
+            self.kwargs["default"] = default
 
 
 class ParseError(Exception):
