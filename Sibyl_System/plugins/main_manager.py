@@ -54,8 +54,6 @@ def get_data_from_url(url: str) -> tuple:
 async def scan(event, flags):
     replied = await event.get_reply_message()
     reason = flags.r
-    if len(reason.split(" ", 1)) == 1:
-        return
     split = reason.strip().split(" ", 1)
     reason = reason.strip().split(" ", 1)[1].strip()
     if flags.u:
