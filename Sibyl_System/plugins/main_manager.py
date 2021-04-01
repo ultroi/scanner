@@ -228,7 +228,7 @@ async def approve(event, flags):
         if reply == me.id:
             list = re.findall(r"tg://user\?id=(\d+)", replied.text)
             if getattr(flags, "or"):
-                reason = " ".join(flags.or)
+                reason = " ".join(getattr(flags, "or"))
                 await replied.edit(
                     re.sub(
                         "(\*\*)?(Scan)? ?Reason:(\*\*)? (`([^`]*)`|.*)",
