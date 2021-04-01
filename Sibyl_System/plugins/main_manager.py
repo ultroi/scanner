@@ -227,7 +227,7 @@ async def approve(event, flags):
         # checks to not gban the Gbanner and find who is who
         if reply == me.id:
             list = re.findall(r"tg://user\?id=(\d+)", replied.text)
-            if getattr(flags, "or"):
+            if getattr(flags, "or", None):
                 reason = " ".join(getattr(flags, "or"))
                 await replied.edit(
                     re.sub(
