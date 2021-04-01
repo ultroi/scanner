@@ -160,7 +160,6 @@ async def scan(event, flags):
         executer.id, target, reason, msg.id, executer, message=replied.text
     )
 
-
 @System.on(system_cmd(pattern=r"re(vive|vert|store) ", allow_inspectors=True))
 async def revive(event):
     try:
@@ -183,9 +182,13 @@ async def revive(event):
 async def logs(event):
     await System.send_file(event.chat_id, "log.txt")
 
-
-@System.on(system_cmd(pattern=r"approve", allow_inspectors=True, force_reply=True))
-async def approve(event):
+@System.command(
+    e = system_cmd(pattern=r"approve", allow_inspectors=True, force_reply=True),
+    group="main",
+    help="Approve a scan request.",
+    flags=[Flag("-or", "Overwrite reason", nargs="*")]
+)
+async def approve(event, flags):
     replied = await event.get_reply_message()
     match = re.match(r"\$SCAN", replied.text)
     auto_match = re.search(r"\$AUTO(SCAN)?", replied.text)
@@ -216,23 +219,24 @@ async def approve(event):
                 bot=bot,
                 message=message,
             )
-            return "OwO"
+            return
+    overwritten = False
     if match:
         reply = replied.sender.id
         sender = await event.get_sender()
-        flags, reason = seprate_flags(event.text)
         # checks to not gban the Gbanner and find who is who
         if reply == me.id:
             list = re.findall(r"tg://user\?id=(\d+)", replied.text)
-            if "or" in flags.keys():
+            if flags.or:
+                reason = " ".join(flags.or)
                 await replied.edit(
                     re.sub(
                         "(\*\*)?(Scan)? ?Reason:(\*\*)? (`([^`]*)`|.*)",
-                        f'**Scan Reason:** {reason.split(" ", 1)[1].strip()}',
+                        f'**Scan Reason:** `{reason}`',
                         replied.text,
                     )
                 )
-                reason = reason.split(" ", 1)[1].strip()
+                overwritten = True
             else:
                 reason = re.search(
                     r"(\*\*)?(Scan)? ?Reason:(\*\*)? (`([^`]*)`|.*)", replied.text
@@ -265,11 +269,20 @@ async def approve(event):
             )
             orig = re.search(r"t.me/(\w+)/(\d+)", replied.text)
             if orig:
-                await System.send_message(
-                    orig.group(1),
-                    "User is a target for enforcement action.\nEnforcement Mode: Lethal Eliminator",
-                    reply_to=int(orig.group(2)),
-                )
+                try:
+                    if overwritten:
+                        await System.send_message(
+                            orig.group(1),
+                            f"User is a target for enforcement action.\nEnforcement Mode: Lethal Eliminator\nYour reason was overwritten with: `{reason}`",
+                            reply_to=int(orig.group(2)),
+                        )
+                    await System.send_message(
+                        orig.group(1),
+                        "User is a target for enforcement action.\nEnforcement Mode: Lethal Eliminator",
+                        reply_to=int(orig.group(2)),
+                    )
+                except:
+                    await event.reply('Failed to notify enforcer about scan being accepted.')
 
 
 @System.on(system_cmd(pattern=r"reject", allow_inspectors=True, force_reply=True))
