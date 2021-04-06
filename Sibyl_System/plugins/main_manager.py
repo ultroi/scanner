@@ -276,6 +276,7 @@ async def approve(event, flags):
                             f"User is a target for enforcement action.\nEnforcement Mode: Lethal Eliminator\nYour reason was overwritten with: `{reason}`",
                             reply_to=int(orig.group(2)),
                         )
+                        return
                     await System.send_message(
                         orig.group(1),
                         "User is a target for enforcement action.\nEnforcement Mode: Lethal Eliminator",
