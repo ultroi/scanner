@@ -1,7 +1,7 @@
 on_string = """
-Connection successful!
-Welcome {Enforcer} {name}
-You are a valid user!
+   𝑊𝐸𝐿𝐶𝑂𝑀𝐸
+𝐍𝐀𝐌𝐄:{Enforcer}
+𝐑𝐀𝐍𝐊:{name}
 """
 
 # Make sure not to change these too much
