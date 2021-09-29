@@ -41,9 +41,9 @@ for load in to_load:
         print("------------------------------------")
 
 
-@System.on(system_cmd(pattern=r"sysinfo", allow_enforcer=True))
+@System.on(system_cmd(pattern=r"osinfo", allow_enforcer=True))
 async def status(event):
-    msg = await event.reply("Conecting to Syliviorus System Core.")
+    msg = await event.reply("Conecting to Orqizon System.")
     time.sleep(1)
     await msg.edit("Initialising ■□□□□□")
     time.sleep(1)
