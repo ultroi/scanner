@@ -43,7 +43,7 @@ for load in to_load:
 
 @System.on(system_cmd(pattern=r"osinfo", allow_enforcer=True))
 async def status(event):
-    msg = await event.reply("Conecting to Orqizon System.")
+    msg = await event.reply("Conecting to Oraizon System.")
     time.sleep(1)
     await msg.edit("Initialising ■□□□□□")
     time.sleep(1)
