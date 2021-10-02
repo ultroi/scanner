@@ -18,7 +18,7 @@ help_plus = """ Here is Help for Bancodes  :-
 ֍ • {OSx16} - SPAMBOT
 ֍ • {OSx17} - CYBER THREATENING / CYBER BULLY
 ֍ • {OSx18} - NSFW SPAMMER
-[Oraizon Support](buttonurl:https://t.me/Oraizon_Support)
 
+Powered By [Oraizon Support](https://t.me/Oraizon_Support)
 """
 __plugin_name__ = "BanCodes"
