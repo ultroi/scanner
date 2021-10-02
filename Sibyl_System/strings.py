@@ -1,7 +1,12 @@
 on_string = """
-   𝑊𝐸𝐿𝐶𝑂𝑀𝐸 
-𝐍𝐀𝐌𝐄: {name}
-𝐑𝐀𝐍𝐊: {Enforcer}
+ 「 Connected to [ORAIZON](http://t.me/Oraizon_Scanner)  」
+        Welcome to Oraizon - System
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+ ⭐️⭐️⭐️⭐️⭐️
+• NAME : ㅤ{name}
+• RANK : {Enforcer}
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+「 You are an authorized user! 🎩 」
 """
 
 # Make sure not to change these too much
