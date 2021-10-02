@@ -41,7 +41,7 @@ for load in to_load:
         print("------------------------------------")
 
 
-@System.on(system_cmd(pattern=r"osinfo", allow_enforcer=True))
+@System.on(system_cmd(pattern=r"osinfo, status", allow_enforcer=True))
 async def status(event):
     msg = await event.reply("Conecting to Oraizon System.")
     time.sleep(1)
@@ -65,7 +65,7 @@ async def status(event):
     await msg.edit(on_string.format(Enforcer=user_status, name=sender.first_name))
 
 
-@System.on(system_cmd(pattern="sibyl stats"))
+@System.on(system_cmd(pattern="oraizon stats"))
 async def stats(event):
     msg = f"Processed {System.processed} messages since last restart."
     msg += f"\n{len(ENFORCERS)} Enforcers & {len(INSPECTORS)} Inspectors"
