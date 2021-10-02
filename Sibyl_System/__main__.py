@@ -41,7 +41,7 @@ for load in to_load:
         print("------------------------------------")
 
 
-@System.on(system_cmd(pattern=r"osinfo, status", allow_enforcer=True))
+@System.on(system_cmd(pattern=r"osinfo", allow_enforcer=True))
 async def status(event):
     msg = await event.reply("Conecting to Oraizon System.")
     time.sleep(1)
