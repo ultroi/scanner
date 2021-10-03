@@ -7,12 +7,19 @@
 # Sibyl System
 > A proactive judgement system for group chats.
 
-[![Sibyl System](https://vignette.wikia.nocookie.net/psychopass/images/7/72/Sibyl_System.png/revision/latest?cb=20141029202159 "Sibyl System")](https://github.com/AnimeKaizoku/SibylSystem "Sibyl System")
+[![Oraizon System](https://vignette.wikia.nocookie.net/psychopass/images/7/72/Sibyl_System.png/revision/latest?cb=20141029202159 "Sibyl System")](https://github.com/AnimeKaizoku/SibylSystem "Sibyl System")
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 ## A Telethon Userbot to make handling spam easer
 
 Do note that this repository does not come with support and assist, if you choose to deploy this anywhere and face issues - DO NOT COME TO US, if you are not sure how to deploy bots such as these then do not deploy them at all.
+
+# How to setup on Heroku 
+
+For starters click on this button 
+
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/ultroi/scanner"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-Green?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+
 
 ## Config
 Here stuff you need to put in config.py or Environment variables:
@@ -85,15 +92,7 @@ Sibyl is under active development and some future plans include
 
 >Why not getting list of all module instead of manually putting module in to_load?
 - I don't want people from uniborg or ftg or other userbots to put their plugins (those weird animation ones or useless ones) in Sibyl System 
-
-# How to setup on Heroku 
-
-For starters click on this button 
-
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/ultroi/scanner"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-Green?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
-
-
-
+ 
 #### Credits
 
 - [Simon](https://github.com/sitischu) for the ID image!
