@@ -79,7 +79,7 @@ async def stats(event):
     await event.reply(msg)
 
 
-@System.on(system_cmd(pattern=r"help", allow_slash=False, allow_inspectors=True))
+@System.on(system_cmd(pattern=r"help", allow_slash=False, allow_inspectors=True, allow_enforcer=True))
 async def send_help(event):
     try:
         help_for = event.text.split(" ", 1)[1].lower()
