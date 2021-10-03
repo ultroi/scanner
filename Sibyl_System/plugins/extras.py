@@ -135,14 +135,14 @@ async def join(event) -> None:
         await System.send_message(event.chat_id, "Joined chat!")
         await System.send_message(
             Sibyl_logs,
-            f"{(await event.get_sender()).first_name} made Sylviorus join {private.group(5)}",
+            f"{(await event.get_sender()).first_name} made Oraizon join {private.group(5)}",
         )
     else:
         await System(JoinChannelRequest(link))
         await System.send_message(event.chat_id, "Joined chat!")
         await System.send_message(
             Sibyl_logs,
-            f"{(await event.get_sender()).first_name} made Sylviorus join {link}",
+            f"{(await event.get_sender()).first_name} made Oraizon join {link}",
         )
 
 
@@ -285,7 +285,7 @@ async def leave(event) -> None:
         )
     else:
         await System(LeaveChannelRequest(link))
-        await System.send_message(event.chat_id, f"Sibyl has left chat[{link}]")
+        await System.send_message(event.chat_id, f"Oraizon has left chat[{link}]")
 
 
 @System.on(system_cmd(pattern=r"get_redirect ", allow_inspectors=True))
