@@ -95,4 +95,4 @@ Sibyl is under active development and some future plans include
  
 #### Credits
 
-- [Simon](https://github.com/sitischu) for the ID image!
+- [Ryuk](https://github.com/ultroi) for the ID image!
