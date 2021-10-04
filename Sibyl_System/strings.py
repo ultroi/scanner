@@ -1,12 +1,21 @@
 on_string = """
- 「 Connected to [ORAIZON](http://t.me/Oraizon_Scanner)  」
+ msg = await event.client.send_file(event.chat, file="https://telegra.ph/file/ae90c8d839351813e22e3.mp4", caption="「 Connected to [ORAIZON](http://t.me/Oraizon_Scanner)  」
+
         Welcome to Oraizon - System
+
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
+
  ⭐️⭐️⭐️⭐️⭐️
+
 • NAME : ㅤ{name}
+
 • RANK : {Enforcer}
+
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
-「 You are an authorized user! 🎩 」
+
+「 You are an authorized user! 🎩 」"
+
+
 """
 
 # Make sure not to change these too much
