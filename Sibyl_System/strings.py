@@ -1,13 +1,14 @@
 on_string = """
- ═══════✭✭✭✭✭════════
+═══════✭✭✭✭✭════════
  CONNECTED TO ORAIZON SYSTEM 
 ═══════ ✭✭✭✭✭════════
-             「❂ USER INFO ❂」
+     「❂ USER INFO ❂」
 
 ⦿ Name - {name}
 ⦿ Rank  -   {enforcer} 
 
 ❂Verified User ✓
+
 """
 
 # Make sure not to change these too much
