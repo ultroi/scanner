@@ -2,7 +2,7 @@ on_string = """
 ══════✭✭✭✭✭═══════
 CONNECTED TO ORAIZON SYSTEM 
 ══════✭✭✭✭✭═══════
- 「❂ USER INFO ❂」
+     「❂ USER INFO ❂」
 
 ⦿ Name -   {name}
 ⦿ Rank  -  {Enforcer} 
