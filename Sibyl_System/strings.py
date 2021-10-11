@@ -5,7 +5,7 @@ on_string = """
      「❂ USER INFO ❂」
 
 ⦿ Name - {name}
-⦿ Rank  -   {enforcer} 
+⦿ Rank  -   {Enforcer} 
 
 ❂Verified User ✓
 
