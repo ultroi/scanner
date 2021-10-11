@@ -1,11 +1,11 @@
 on_string = """
-═══════✭✭✭✭✭════════
- CONNECTED TO ORAIZON SYSTEM 
-═══════ ✭✭✭✭✭════════
+═══════✭✭✭✭✭═══════
+CONNECTED TO ORAIZON SYSTEM 
+═══════ ✭✭✭✭✭═══════
      「❂ USER INFO ❂」
 
-⦿ Name - {name}
-⦿ Rank  -   {Enforcer} 
+⦿ Name -   {name}
+⦿ Rank  -  {Enforcer} 
 
 ❂Verified User ✓
 
