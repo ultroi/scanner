@@ -18,6 +18,8 @@ help_plus = """ Here is Help for Bancodes  :-
 ֍ • {OSx16} - SPAMBOT
 ֍ • {OSx17} - CYBER THREATENING / CYBER BULLY
 ֍ • {OSx18} - NSFW SPAMMER
+֍ • {OSx19} - PAID GIRL
+֍ • {OSx20} - GAY INVASION
 
 Powered By  Oraizon Support
 """
