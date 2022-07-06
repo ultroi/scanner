@@ -43,7 +43,7 @@ for load in to_load:
 
 @System.on(system_cmd(pattern=r"trinfo", allow_enforcer=True))
 async def status(event):
-    msg = await event.client.send_file(event.chat_id, file="https://telegra.ph/file/325d571e977aff9ae5f4d.mp4", caption="Connecting to Oraizon Systems", reply_to=event)
+    msg = await event.client.send_file(event.chat_id, file="https://telegra.ph/file/325d571e977aff9ae5f4d.mp4", caption="Connecting to Turbo System", reply_to=event)
     time.sleep(1)
     await msg.edit("Initialising ■□□□□□")
     time.sleep(1)
